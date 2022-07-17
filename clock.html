@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+    
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body{
+            background-color: black;
+        }
+
+        #clockContainer{
+            background: url("image/clock.png") no-repeat;
+            height: 100vh;
+            width:  100vh;
+            position: relative;
+            margin: auto;
+            background-size: 100%;
+            
+        }
+        #hour{
+            position: absolute;
+            height: 19%;
+            width: 1.8%;
+            background-color: red;
+            border-radius: 5px;
+            top: 31%;
+            left: 48.89%;
+            transform-origin: bottom;
+        }
+        #minute{
+            position: absolute;
+            /* position: relative; */
+            height: 23.4%;
+            width: 1%;
+            background-color: green;
+            border-radius: 5px;
+            top: 26.6%;
+            left: 49.2794%;
+            transform-origin: bottom;
+        }
+        #second{
+        position: absolute;
+            /* position: relative; */
+            height: 30.5%;
+            width: 0.6%;
+            border-radius: 5px;
+            top: 19.5%;
+            left: 49.56%;
+            background-color: yellow;
+            transform-origin: bottom;
+        }
+    </style>
+
+</head>
+<body onload="showTime()">
+        <div id="clockContainer">
+                <div id="hour"></div>
+                <div id="minute"></div>
+                <div id="second"></div>
+        </div>
+</body>
+<script>
+
+    function showTime()
+    {
+        let hour = document.getElementById("hour");
+        let minute = document.getElementById("minute");
+        let second = document.getElementById("second");
+
+        let hr,min,sec,hr_deg, min_deg, sec_deg;
+        let date = new Date();
+        hr = date.getHours();
+        min = date.getMinutes();
+        sec = date.getSeconds();
+
+        hr_deg = hr*30 + min/2;
+        min_deg = min*6;
+        sec_deg = sec*6;
+
+        hour.style.transform = `rotate(${hr_deg}deg)`;
+        minute.style.transform = `rotate(${min_deg}deg)`;
+        second.style.transform = `rotate(${sec_deg}deg)`;
+    }
+    setInterval(showTime,1000);
+
+</script>
+</html>
